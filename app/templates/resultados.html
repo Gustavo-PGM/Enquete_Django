@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}Resultados{% endblock %}
+
+{% block favicon %}https://imgs.search.brave.com/0Cga6i-ipW7nIl0w_Re118XvNSZPE15sD0EwAXz3tGc/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/Y25uYnJhc2lsLmNv/bS5ici93cC1jb250/ZW50L3RoZW1lcy9t/YXN0ZXItdGhlbWUv/YXNzZXRzL2ltZy9y/ZWxhY2lvbmFkb3Mu/c3Zn{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center mb-4">{{ questao.pergunta }}</h2>
+
+    <div class="list-group">
+        {% for escolha in opcoes %}
+        <div class="list-group-item d-flex justify-content-between align-items-center mb-3 border rounded shadow-sm">
+            <div class="w-75">
+                <h5 class="mb-2">{{ escolha.opcao }}</h5>
+                <div class="d-flex align-items-center">
+                    <div class="w-75">
+                        <div class="progress">
+                            <div class="progress-bar bg-success" role="progressbar" style="width: {{ escolha.votos }}%;" aria-valuenow="{{ escolha.votos }}" aria-valuemin="0" aria-valuemax="100">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ml-3">
+                        <strong>{{ escolha.votos }} votos</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="text-center my-4">
+        <a href="{% url 'enquetes' %}" class="btn btn-secondary btn-lg">Voltar à lista de enquetes</a>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,30 @@
+    {% extends 'base.html' %}
+
+    {% block title %}Escolha{% endblock %}
+
+    {% block favicon %}https://imgs.search.brave.com/0Cga6i-ipW7nIl0w_Re118XvNSZPE15sD0EwAXz3tGc/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/Y25uYnJhc2lsLmNv/bS5ici93cC1jb250/ZW50L3RoZW1lcy9t/YXN0ZXItdGhlbWUv/YXNzZXRzL2ltZy9y/ZWxhY2lvbmFkb3Mu/c3Zn{% endblock %}
+
+    {% block content %}
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">Escolha a enquete para você votar</h2>
+
+        <div class="list-group mb-4">
+            {% for questao in perguntas %}
+                <a href="{% url 'votos' questao.pk %}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center border-2 rounded shadow-sm mb-2 hover-shadow">
+                    <div class="d-flex flex-column">
+                        <h5 class="mb-1">{{ questao.pergunta }}</h5>
+                        <small class="text-muted">Clique para mais detalhes.</small>
+                    </div>
+                    <span class="badge badge-primary badge-pill">Votação em andamento</span>
+                </a>
+            {% endfor %}
+        </div>
+
+        <div class="text-center mb-4">
+            <h4>Clique em uma das enquetes para votar!</h4>
+        </div>
+
+    </div>
+
+
+    {% endblock %}

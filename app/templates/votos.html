@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}Vote Agora{% endblock %}
+
+{% block favicon %}https://imgs.search.brave.com/0Cga6i-ipW7nIl0w_Re118XvNSZPE15sD0EwAXz3tGc/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/Y25uYnJhc2lsLmNv/bS5ici93cC1jb250/ZW50L3RoZW1lcy9t/YXN0ZXItdGhlbWUv/YXNzZXRzL2ltZy9y/ZWxhY2lvbmFkb3Mu/c3Zn{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center mb-4">{{ questao.pergunta }}</h2>
+
+    <form action="{% url 'resultados' questao.id %}" method="POST">
+        {% csrf_token %}
+
+        <div class="list-group mb-4">
+            {% for escolha in opcoes %}
+            <div class="list-group-item">
+                <input type="radio" id="opcao{{ escolha.id }}" name="resposta" value="{{ escolha.id }}" class="form-check-input me-2">
+                <label for="opcao{{ escolha.id }}" class="form-check-label">{{ escolha.opcao }}</label>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="text-center mt-4">
+            <button type="submit" class="btn btn-primary btn-lg">Enviar Voto</button>
+        </div>
+    </form>
+
+    <div class="text-center my-4">
+        <a href="{% url 'enquetes' %}" class="btn btn-secondary btn-lg">Voltar à lista de enquetes</a>
+    </div>
+
+</div>
+{% endblock %}
